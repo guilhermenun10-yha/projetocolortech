@@ -1,44 +1,68 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colortech</title>
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
-    >
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colortech</title>
+  <!-- Framework Pico CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  
+  <style>
+    body {
+      /* Ajustado para a pasta static do Flask com aspas duplas */
+      background-image: url("/static/imagens/colortech1.png") !important;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      margin: 0;
+    }
+    
+    main.container-fluid {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container-fluid">
     <h1>Login</h1>
     <h2>Área do cliente</h2>
-</head>
-<body>
-    <main class="container-fluid"> 
-        <form>
-            <fieldset>
-                <label>
-                  Usuário
-                  <input
-                    name="Usuário/Email"
-                    placeholder="Usuário ou Email"
-                    autocomplete="given-name"
-                  />
-                </label>
-                <label>
-                  Senha
-                  <input
-                    type="Senha"
-                    name="Senha"
-                    placeholder="Senha"
-                    autocomplete="Senha"
-                  />
-                </label>
-              </fieldset>
-            
-              <input type="button" value="Entrar" onclick="window.location.href='http://127.0.0.1:5000/orcamento'">
-
-              
-            
-          </form>
-    </main>
+        
+    <!-- Bloco que verifica se existem mensagens de alerta vindas do Python -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <article style="background-color: #d32f2f; color: white; padding: 12px; margin-bottom: 20px; border-radius: 4px; text-align: center;">
+            <strong>Erro:</strong> {{ message }}
+          </article>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+  
+    <!-- Formulário único e correto para o envio dos dados ao Flask -->
+    <form method="POST" action="/">
+      <fieldset>
+        <label>
+          Usuário
+          <input name="usuario" placeholder="Usuário ou Email" autocomplete="username" required />
+        </label>
+        <label>
+          Senha
+          <input type="password" name="senha" placeholder="Senha" autocomplete="current-password" required />
+        </label>
+      </fieldset>
+  
+      <button type="submit">Entrar</button>
+    </form>
+    
+  </main>
 </body>
+
 </html>

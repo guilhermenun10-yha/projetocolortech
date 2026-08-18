@@ -2,54 +2,90 @@
 <html lang="pt-br">
 
 <head>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pagina principal</title>
-  <h1>Informe as medidas</h1>
-  <nav>
-    <ul>
-      <li><strong>Colortech</strong></li>
-    </ul>
-    <ul>
-
-      <li>
-        <details class="dropdown">
-          <summary>
-            Conta
-          </summary>
-          <ul dir="rtl">
-            <li><a href="#">Perfil</a></li>
-            <li><a href="#">Configurações</a></li>
-            <li><a href="#">Segurança</a></li>
-            <li><a href="/">Encerrar sessão</a></li>
-          </ul>
-        </details>
-      </li>
-    </ul>
-  </nav>
+  <!-- Framework Pico CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   
+  <style>
+    body {
+      background-image: url('imagens/colortech1.png') !important;
+      background-size: cover !important;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed; /* Mantém o fundo fixo se a página tiver rolagem */
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    /* Caixa transparente opcional para destacar o formulário e o menu do fundo */
+    main.container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      margin-top: 20px;
+    }
+  </style>
 </head>
 
 <body>
-  
-  <form id="+adicionarmedidas">
-    <div id="container-medidas">
-      
-      <div class="campo-linha">
-        <input type="number" name="Largura" placeholder="Largura" aria-label="Number">
 
-        <input type="number" name="Altura" placeholder="Altura" aria-label="Number">
+  <!-- Todo o conteúdo visual deve ficar aqui dentro do body -->
+  <main class="container">
+    
+    <nav>
+      <ul>
+        <li><strong>Colortech</strong></li>
+      </ul>
+      <ul>
+        <li>
+          <details class="dropdown">
+            <summary>Conta</summary>
+            <ul dir="rtl">
+              <li><a href="/">Encerrar sessão</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </nav>
 
-        <input type="number" name="Quantidade1" placeholder="Quantidade1" aria-label="Number">
+    <h1>Informe as medidas</h1>
 
-        <input type="color" value="#ff9500" aria-label="Color picker">
+    <form id="+adicionarmedidas">
+      <div id="container-medidas">
+        <div class="campo-linha">
+          <input type="number" name="Largura" placeholder="Largura" aria-label="Number">
+          <input type="number" name="Altura" placeholder="Altura" aria-label="Number">
+          <input type="number" name="Quantidade" placeholder="Quantidade" aria-label="Number">
+          <input type="color" value="#ff9500" aria-label="Color picker">
+        </div>
       </div>
-    </div>
 
-    <button type="button" onclick="adicionarCampo()">Adicionar medidas</button>
+      <button type="button" onclick="adicionarCampo()">Adicionar medidas</button>
+    </form>
 
-  </form>
+  </main>
+
+  <script>
+    // Você vai precisar desta função JavaScript para fazer o botão funcionar
+    function adicionarCampo() {
+      const container = document.getElementById('container-medidas');
+      const novaLinha = document.createElement('div');
+      novaLinha.className = 'campo-linha';
+      
+      // Cria uma estrutura de inputs na mesma linha usando o grid do Pico CSS se quiser, 
+      // ou apenas duplica os campos atuais:
+      novaLinha.innerHTML = `
+        <input type="number" name="Largura" placeholder="Largura" aria-label="Number">
+        <input type="number" name="Altura" placeholder="Altura" aria-label="Number">
+        <input type="number" name="Quantidade" placeholder="Quantidade" aria-label="Number">
+        <input type="color" value="#ff9500" aria-label="Color picker">
+      `;
+      container.appendChild(novaLinha);
+    }
+  </script>
 
 </body>
 
