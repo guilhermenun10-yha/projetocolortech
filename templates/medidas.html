@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina principal</title>
+  <h1>Informe as medidas</h1>
+  <nav>
+    <ul>
+      <li><strong>Colortech</strong></li>
+    </ul>
+    <ul>
+
+      <li>
+        <details class="dropdown">
+          <summary>
+            Conta
+          </summary>
+          <ul dir="rtl">                      
+            <li><a href="/">Encerrar sessão</a></li>
+          </ul>
+        </details>
+      </li>
+    </ul>
+  </nav>
+  
+</head>
+
+<body>
+  
+  <form method="POST" action="/">
+    <!-- O atributo step="0.01" permite que o usuário digite números com vírgula/ponto -->
+    <label for="altura">Altura (cm):</label>
+    <input type="number" id="altura" name="altura" step="0.01" required><br><br>
+
+    <label for="largura">Largura (cm):</label>
+    <input type="number" id="largura" name="largura" step="0.01" required><br><br>
+
+    <label for="comprimento">Comprimento (cm):</label>
+    <input type="number" id="comprimento" name="comprimento" step="0.01" required><br><br>
+
+    <button type="submit">Salvar Medidas</button>
+      
+      
+
+        <input type="color" value="#ff9500" aria-label="Color picker">
+      </div>
+    </div>
+
+    
+
+  </form>
+
+  <input type="button" value="Finalizar orcamento" onclick="window.location.href='http://127.0.0.1:5000/orcamento'">
+
+</body>
+
+</html>
